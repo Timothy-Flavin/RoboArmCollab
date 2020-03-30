@@ -15,20 +15,21 @@ void setup() {
   hand.attach(11);
 }
 
-void loop() {
-  for (pos = 0; pos <= 30; pos += 1) { // goes from 0 degrees to 180 degrees
+void sway(Servo arm){
+  for (pos = 20; pos <= 50; pos += 1) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
-    base.write(pos);   
-    lowArm.write(pos+30);  
-    upArm.write(pos+120);  
-    hand.write(pos);  // tell servo to go to position in variable 'pos'
-    delay(30);                       // waits 15ms for the servo to reach the position
+    arm.write(pos);     // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
   }
-  for (pos = 30; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-    base.write(pos);   
-    lowArm.write(pos+30);  
-    upArm.write(pos+120);  
-    hand.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(30);                       // waits 15ms for the servo to reach the position
+  for (pos = 50; pos >= 20; pos -= 1) { // goes from 180 degrees to 0 degrees
+    arm.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
   }
+}
+
+void loop() {
+  sway(base);
+  sway(lowArm);
+  sway(upArm);
+  sway(hand);
 }
